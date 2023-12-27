@@ -15,12 +15,12 @@ namespace New_calc
             history = new List<string>();
         }
 
-        private void btn_digit_click(object sender, EventArgs e)
+        private void btn_digit_click(object sender, EventArgs e) //tangenter 0-9 och "."
         {
             txtOutput.Text += (string)((Button)sender).Text;
         }
 
-        private void btn_operator_click(object sender, EventArgs e)
+        private void btn_operator_click(object sender, EventArgs e) //tangenter + - / *
         {
             if (txtOutput.Text == "")
                 txtOutput.Text += (string)((Button)sender).Text;
@@ -29,11 +29,11 @@ namespace New_calc
                 txtOutput.Text += " " + (string)((Button)sender).Text + " ";
         }
 
-        private void btn_equals_click(object sender, EventArgs e)
+        private void btn_equals_click(object sender, EventArgs e) //tangent =
         {
             string[] text = txtOutput.Text.Split();
 
-            if (text.Length != 3)
+            if (text.Length != 3) //om användaren använder tangentbord istället för klicka i applikationen och slår fel
             {
                 txtOutput.Text = "Error: Invalid input format.";
                 return;
@@ -51,7 +51,7 @@ namespace New_calc
                 return;
             }
 
-            switch (text[1])
+            switch (text[1]) //switch sats för de olika räknesätten
             {
                 case "+":
                     txtOutput.Text = (n1 + n2).ToString();
@@ -88,17 +88,17 @@ namespace New_calc
             UpdateHistory(); 
         }
 
-        private void clear_all_btn_click(object sender, EventArgs e)
+        private void clear_all_btn_click(object sender, EventArgs e) //raderar allting i fältet
         {
             txtOutput.Clear();
         }
 
-        private void UpdateHistory()
+        private void UpdateHistory() //funktion för att uppdatera label för historiken
         {
             lbHistory.Text = string.Join(Environment.NewLine, history);
         }
 
-        private void clear_history_btn(object sender, EventArgs e)
+        private void clear_history_btn(object sender, EventArgs e) //raderar och uppdaterar historiken
         {
             history.Clear();
             UpdateHistory();
